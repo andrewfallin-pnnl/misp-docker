@@ -52,7 +52,8 @@ services:
       start_interval: 5s
 
   misp-core:
-    image: ghcr.io/misp/misp-docker/misp-core:${CORE_RUNNING_TAG:-latest}
+    image: tanuki-registry.pnnl.gov/crisp/crisp-misp/misp-core:latest
+      #image: ghcr.io/misp/misp-docker/misp-core:${CORE_RUNNING_TAG:-latest}
     cap_add:
       - AUDIT_WRITE
     build:
@@ -254,7 +255,8 @@ services:
       - "CONTENT_SECURITY_POLICY=${CONTENT_SECURITY_POLICY}"
 
   misp-modules:
-    image: ghcr.io/misp/misp-docker/misp-modules:${MODULES_RUNNING_TAG:-latest}
+    image: tanuki-registry.pnnl.gov/crisp/crisp-misp/misp-modules:latest
+      #image: ghcr.io/misp/misp-docker/misp-modules:${MODULES_RUNNING_TAG:-latest}
     build:
       context: modules/.
       args:

@@ -53,7 +53,8 @@ FROM php-base AS composer-build
 EOF
 
     WORKDIR /tmp
-    RUN curl -o /tmp/composer.json https://raw.githubusercontent.com/MISP/MISP/${CORE_COMMIT:-${CORE_TAG}}/app/composer.json
+    RUN curl -o /tmp/composer.json https://raw.githubusercontent.com/andrewfallin-pnnl/MISP-Feeds/refs/heads/${CORE_TAG}/app/composer.json
+    #RUN curl -o /tmp/composer.json https://raw.githubusercontent.com/MISP/MISP/${CORE_COMMIT:-${CORE_TAG}}/app/composer.json
     RUN sed -i '/cake-resque/d' /tmp/composer.json
     RUN sed -i 's/authentication",/authentication"/' /tmp/composer.json
 
@@ -160,7 +161,8 @@ FROM php-base AS python-build
         if [ ! -z "${CORE_COMMIT}" ]; then
             git clone https://github.com/MISP/MISP.git /var/www/MISP && cd /var/www/MISP && git checkout "${CORE_COMMIT}"
         else
-            git clone --branch "${CORE_TAG}" --depth 1 https://github.com/MISP/MISP.git /var/www/MISP
+			git clone --branch "${CORE_TAG}" --depth 1 https://github.com/andrewfallin-pnnl/MISP-Feeds.git /var/www/MISP
+            #git clone --branch "${CORE_TAG}" --depth 1 https://github.com/MISP/MISP.git /var/www/MISP
         fi
         cd /var/www/MISP || exit; git submodule update --init --recursive .
 EOF
