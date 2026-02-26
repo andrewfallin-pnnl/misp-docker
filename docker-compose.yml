@@ -79,7 +79,8 @@ services:
       start_interval: 5s
 
   misp-core:
-    image: ${REGISTRY_MIRROR_URL:-}ghcr.io/misp/misp-docker/misp-core:${CORE_RUNNING_TAG:-latest}
+    image: tanuki-registry.pnnl.gov/crisp/crisp-misp/misp-core:latest 
+    #image: ${REGISTRY_MIRROR_URL:-}ghcr.io/misp/misp-docker/misp-core:${CORE_RUNNING_TAG:-latest}
     restart: always
     cap_add:
       - AUDIT_WRITE
@@ -313,7 +314,8 @@ services:
       - "COMPOSE_PROFILES=${COMPOSE_PROFILES}"
 
   misp-modules:
-    image: ${REGISTRY_MIRROR_URL:-}ghcr.io/misp/misp-docker/misp-modules:${MODULES_RUNNING_TAG:-latest}
+    image: tanuki-registry.pnnl.gov/crisp/crisp-misp/misp-modules:latest
+    #image: ${REGISTRY_MIRROR_URL:-}ghcr.io/misp/misp-docker/misp-modules:${MODULES_RUNNING_TAG:-latest}
     restart: always
     build:
       context: modules/.
