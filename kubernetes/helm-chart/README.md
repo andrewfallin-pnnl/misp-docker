@@ -9,8 +9,11 @@ helm lint .
 # Package chart
 helm package .
 
+# Add repo
+helm repo add misp https://gitlab.com/api/v4/projects/64679397/packages/helm/stable
+
 # Install
-helm install misp ./misp-1.0.0.tgz
+helm install misp/misp
 ```
 
 ## Custom Scripts
